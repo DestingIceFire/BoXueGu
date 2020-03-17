@@ -1,4 +1,4 @@
-package com.hbtangxun.boxuegu;
+package com.hbtangxun.boxuegu.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,6 +6,8 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.hbtangxun.boxuegu.R;
 
 import java.util.Timer;
 import java.util.TimerTask;

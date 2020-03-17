@@ -1,8 +1,10 @@
-package com.hbtangxun.boxuegu;
+package com.hbtangxun.boxuegu.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.hbtangxun.boxuegu.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -31,7 +31,8 @@
         android:layout_height="48dp"
         android:background="@drawable/register_psw_bg"
         android:drawableLeft="@drawable/psw_icon"
-        android:hint="请输入密码" />
+        android:hint="请输入密码"
+        android:inputType="textPassword" />
 
     <EditText
         android:id="@+id/et_psw_again"
@@ -40,7 +41,8 @@
         android:layout_height="48dp"
         android:background="@drawable/register_psw_again_bg"
         android:drawableLeft="@drawable/psw_icon"
-        android:hint="请再次确认密码" />
+        android:hint="请再次确认密码"
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/btn_register"
