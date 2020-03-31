@@ -1,8 +1,10 @@
 package com.hbtangxun.boxuegu.activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
@@ -17,10 +19,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hbtangxun.boxuegu.R;
+import com.hbtangxun.boxuegu.view.MyInfoView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private FrameLayout main_frame;
+    private FrameLayout mBodyLayout;
 
     //标题栏的返回键
     private ImageView iv_back_title;
@@ -42,6 +45,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private RelativeLayout exercisesBtn;
     private RelativeLayout myBtn;
 
+    //界面 我的
+    private MyInfoView mMyInfoView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void initView() {
         //中间内容控件
-        main_frame = findViewById(R.id.main_frame);
+        mBodyLayout = findViewById(R.id.main_frame);
         //标头控件
         iv_back_title = findViewById(R.id.iv_back_title);
         title_text = findViewById(R.id.title_text);
@@ -95,15 +101,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.bottom_bar_rl_course_btn:
                 clearBottomImageStats();
-                setSelectedStatus(0);
+                selectDisplayView(0);
                 break;
             case R.id.bottom_bar_rl_exercises_btn:
                 clearBottomImageStats();
-                setSelectedStatus(1);
+                selectDisplayView(1);
                 break;
             case R.id.bottom_bar_rl_my_btn:
                 clearBottomImageStats();
-                setSelectedStatus(2);
+                selectDisplayView(2);
+                if (mMyInfoView != null) {
+                    mMyInfoView.setLoginParams(readLoginStatus());
+                }
                 break;
         }
     }
@@ -161,8 +170,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 移除不需要视图
      */
     private void removeAllView() {
-        for (int i = 0; i < main_bottom_bar.getChildCount(); i++) {
-            main_bottom_bar.getChildAt(i).setVisibility(View.GONE);
+        for (int i = 0; i < mBodyLayout.getChildCount(); i++) {
+            mBodyLayout.getChildAt(i).setVisibility(View.GONE);
         }
     }
 
@@ -201,6 +210,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case 2:
                 //我的
+                if (mMyInfoView == null) {
+                    mMyInfoView = new MyInfoView(this);
+                    mBodyLayout.addView(mMyInfoView.getView());
+                } else {
+                    mMyInfoView.getView();
+                }
+                mMyInfoView.showView();
                 break;
 
         }
@@ -215,6 +231,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(MainActivity.this, "再按一次退出", Toast.LENGTH_SHORT).show();
                 exitTime = System.currentTimeMillis();
             } else {
+
                 finish();
 
                 if (readLoginStatus()) {
@@ -246,4 +263,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         edit.commit();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data == null) {
+            boolean isLogin = data.getBooleanExtra("isLogin", false);
+            if (isLogin) {
+                clearBottomImageStats();
+                selectDisplayView(0);
+            }
+            if (mMyInfoView != null) {
+                mMyInfoView.setLoginParams(isLogin);
+            }
+        }
+    }
 }
