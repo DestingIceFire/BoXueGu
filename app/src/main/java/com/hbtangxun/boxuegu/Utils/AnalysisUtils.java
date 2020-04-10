@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 /**
- * 用于获取用户名
+ * 用于从SP中获取用户名
  */
 public class AnalysisUtils {
     /**

@@ -14,7 +14,9 @@ import android.widget.Toast;
 
 import com.hbtangxun.boxuegu.R;
 import com.hbtangxun.boxuegu.Utils.MD5Utils;
-
+/**
+ * 注册 界面
+ */
 public class RegisterActivity extends Activity implements View.OnClickListener {
 
     //标题栏的返回键
