@@ -72,6 +72,9 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
         } else if (v == rl_security_parent) {
             Toast.makeText(SettingActivity.this, "设置密保", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, FindPswActivity.class);
+            intent.putExtra("from", "security");
+            startActivity(intent);
         } else if (v == rl_exit_login) {
             Toast.makeText(SettingActivity.this, "退出登录", Toast.LENGTH_SHORT).show();
             clearLoginStatus();

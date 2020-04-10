@@ -3,6 +3,7 @@ package com.hbtangxun.boxuegu.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -42,6 +43,8 @@ public class ModifyPswActivity extends Activity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_psw);
+        //设置此界面为竖屏
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         userName = AnalysisUtils.readLoginUserName(this);
         initView();
         initData();
