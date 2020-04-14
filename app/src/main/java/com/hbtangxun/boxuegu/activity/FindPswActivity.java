@@ -107,7 +107,7 @@ public class FindPswActivity extends Activity {
      */
     private void savePsw(String userName) {
         String md5Psw = MD5Utils.md5("123456");//把密码用Md5加密
-        SharedPreferences sp = getSharedPreferences("loginInfo", MODE_PRIVATE);//loginInfo表示文件名
+        SharedPreferences sp = getSharedPreferences("UserInfo", MODE_PRIVATE);//UserInfo表示文件名
         SharedPreferences.Editor editor = sp.edit();//获取编辑器
         editor.putString(userName, md5Psw);
         editor.commit();//提交修改
@@ -117,7 +117,7 @@ public class FindPswActivity extends Activity {
      * 保存密保到SharedPreferences中
      */
     private void saveSecurity(String validateName) {
-        SharedPreferences sp = getSharedPreferences("loginInfo", MODE_PRIVATE);//loginInfo表示文件名
+        SharedPreferences sp = getSharedPreferences("UserInfo", MODE_PRIVATE);//UserInfo表示文件名
         SharedPreferences.Editor editor = sp.edit();//获取编辑器
         editor.putString(AnalysisUtils.readLoginUserName(this) + "_security", validateName);//存入账号对应的密保
         editor.commit();//提交修改
@@ -127,7 +127,7 @@ public class FindPswActivity extends Activity {
      * 从SharedPreferences中读取密保
      */
     private String readSecurity(String userName) {
-        SharedPreferences sp = getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
+        SharedPreferences sp = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
         String security = sp.getString(userName + "_security", "");
         return security;
     }
@@ -137,7 +137,7 @@ public class FindPswActivity extends Activity {
      */
     private boolean isExistUserName(String userName) {
         boolean hasUserName = false;
-        SharedPreferences sp = getSharedPreferences("loginInfo", MODE_PRIVATE);
+        SharedPreferences sp = getSharedPreferences("UserInfo", MODE_PRIVATE);
         String spPsw = sp.getString(userName, "");
         if (!TextUtils.isEmpty(spPsw)) {
             hasUserName = true;
