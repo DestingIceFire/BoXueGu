@@ -11,7 +11,9 @@ import com.hbtangxun.boxuegu.R;
 
 import java.util.Timer;
 import java.util.TimerTask;
-
+/**
+ * 欢迎 界面
+ */
 public class SplashActivity extends Activity {
 
     private TextView text_splash;

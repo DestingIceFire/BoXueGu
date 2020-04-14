@@ -16,7 +16,11 @@ import android.widget.Toast;
 import com.hbtangxun.boxuegu.R;
 import com.hbtangxun.boxuegu.Utils.AnalysisUtils;
 import com.hbtangxun.boxuegu.activity.LoginActivity;
+import com.hbtangxun.boxuegu.activity.SettingActivity;
 
+/**
+ *  我的  界面
+ */
 public class MyInfoView implements View.OnClickListener {
 
     private LinearLayout ll_head;
@@ -124,7 +128,8 @@ public class MyInfoView implements View.OnClickListener {
             }
         } else if (v == rl_course_setting) {
             if (readLoginStatus()) {
-                Toast.makeText(mContext, "登录成功，设置", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, SettingActivity.class);
+                mContext.startActivity(intent);
                 //进入 设置 界面
             } else {
                 //未登录 提示

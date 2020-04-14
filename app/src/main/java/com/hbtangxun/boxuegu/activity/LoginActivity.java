@@ -3,6 +3,7 @@ package com.hbtangxun.boxuegu.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -14,7 +15,9 @@ import android.widget.Toast;
 
 import com.hbtangxun.boxuegu.R;
 import com.hbtangxun.boxuegu.Utils.MD5Utils;
-
+/**
+ * 登录 界面
+ */
 public class LoginActivity extends Activity implements View.OnClickListener {
 
     //标题栏的返回键
@@ -34,7 +37,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        //设置此界面为竖屏
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         initView();
         initData();
 
@@ -75,7 +79,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             startActivityForResult(intent, 1);
         } else if (v == login_find_psw) {
             //跳转到忘记密码界面
-            Toast.makeText(LoginActivity.this, "暂未开发", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, FindPswActivity.class);
+            startActivity(intent);
         }
     }
 

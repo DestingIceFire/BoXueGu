@@ -21,6 +21,10 @@ import android.widget.Toast;
 import com.hbtangxun.boxuegu.R;
 import com.hbtangxun.boxuegu.view.MyInfoView;
 
+/**
+ * 主界面 界面
+ */
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FrameLayout mBodyLayout;
