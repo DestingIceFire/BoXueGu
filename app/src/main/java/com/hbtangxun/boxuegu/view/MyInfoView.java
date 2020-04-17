@@ -17,9 +17,10 @@ import com.hbtangxun.boxuegu.R;
 import com.hbtangxun.boxuegu.Utils.AnalysisUtils;
 import com.hbtangxun.boxuegu.activity.LoginActivity;
 import com.hbtangxun.boxuegu.activity.SettingActivity;
+import com.hbtangxun.boxuegu.activity.UserInfoActivity;
 
 /**
- *  我的  界面
+ * 我的  界面
  */
 public class MyInfoView implements View.OnClickListener {
 
@@ -112,6 +113,8 @@ public class MyInfoView implements View.OnClickListener {
             if (readLoginStatus()) {
                 Toast.makeText(mContext, "登录成功，个人资料", Toast.LENGTH_SHORT).show();
                 //进入 我的资料 界面
+                Intent intent = new Intent(mContext, UserInfoActivity.class);
+                mContext.startActivity(intent);
             } else {
                 //未登录 跳转到 登录界面
                 Intent intent = new Intent(mContext, LoginActivity.class);

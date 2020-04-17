@@ -136,7 +136,7 @@
         android:background="#E4E4E4" />
 
     <RelativeLayout
-        android:id="@+id/el_signature"
+        android:id="@+id/rl_signature"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginLeft="15dp"

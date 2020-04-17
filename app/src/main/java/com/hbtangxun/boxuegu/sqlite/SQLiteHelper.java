@@ -20,7 +20,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // 创建个人信息表
         db.execSQL("CREATE TABLE IF NOT EXISTS " + U_USERINFO + "("
-                + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "_id INTEGER PRIMARY KEY AUTOINCREMENT, " //主键 自增长
                 + "userName VARCHAR, " // 用户名
                 + "nickName VARCHAR, " // 昵称
                 + "sex VARCHAR, "      // 性别
