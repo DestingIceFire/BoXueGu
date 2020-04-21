@@ -3,9 +3,12 @@ package com.hbtangxun.boxuegu.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -33,6 +36,9 @@ public class UserInfoActivity extends Activity implements View.OnClickListener {
     private ImageView iv_head_icon;
 
     private String spUserName;
+
+    public static final int CHANGE_NICKNAME = 1;
+    public static final int CHANGE_SIGNATURE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +121,14 @@ public class UserInfoActivity extends Activity implements View.OnClickListener {
         } else if (v == rl_nick_name) {
             //昵称
             ToolUtils.showToastShort(UserInfoActivity.this, "修改昵称");
+
+            String name = tv_nick_name.getText().toString().trim();
+            Bundle bundle = new Bundle();
+            bundle.putString("content", name);
+            bundle.putInt("flag", CHANGE_NICKNAME);
+            bundle.putString("title", "昵 称");
+            enterActivityForResult(ChangeUserInfoActivity.class, CHANGE_NICKNAME, bundle);
+
         } else if (v == rl_sex) {
             //性别
             String sex = tv_sex.getText().toString();
@@ -122,7 +136,19 @@ public class UserInfoActivity extends Activity implements View.OnClickListener {
         } else if (v == rl_signature) {
             //签名
             ToolUtils.showToastShort(UserInfoActivity.this, "修改签名");
+            String sign = tv_signature.getText().toString().trim();
+            Bundle bundle = new Bundle();
+            bundle.putString("content", sign);
+            bundle.putInt("flag", CHANGE_SIGNATURE);
+            bundle.putString("title", "签 名");
+            enterActivityForResult(ChangeUserInfoActivity.class, CHANGE_SIGNATURE, bundle);
         }
+    }
+
+    private void enterActivityForResult(Class<?> to, int requestCode, Bundle data) {
+        Intent intent = new Intent(this, to);
+        intent.putExtras(data);
+        startActivityForResult(intent, requestCode);
     }
 
     private void sexDialog(String sex) {
@@ -148,6 +174,49 @@ public class UserInfoActivity extends Activity implements View.OnClickListener {
                 })
                 .create()
                 .show();
+
+    }
+
+    private String newData;
+
+    /**
+     * 回传数据
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case CHANGE_NICKNAME: // 昵称
+                if (data != null) {
+                    newData = data.getStringExtra("nickName");
+                    if (TextUtils.isEmpty(newData) || newData == null) {
+                        Log.e("TAG", "昵称为空");
+                        return;
+                    }
+                    tv_nick_name.setText(newData);
+                    //更新数据库里 昵称 的信息
+                    DBUtils.getInstance(UserInfoActivity.this).updateUserInfo("nickName", newData, spUserName);
+                } else {
+                    Log.e("TAG", "z昵称为空");
+                }
+                break;
+            case CHANGE_SIGNATURE: //签名
+                if (data != null) {
+                    newData = data.getStringExtra("signature");
+                    if (TextUtils.isEmpty(newData) || newData == null) {
+                        return;
+                    }
+                    tv_signature.setText(newData);
+                    //更新数据库里 签名 的信息
+                    DBUtils.getInstance(UserInfoActivity.this).updateUserInfo("signature", newData, spUserName);
+                }
+                break;
+        }
 
     }
 }
