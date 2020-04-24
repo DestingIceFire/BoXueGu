@@ -195,14 +195,11 @@ public class UserInfoActivity extends Activity implements View.OnClickListener {
                 if (data != null) {
                     newData = data.getStringExtra("nickName");
                     if (TextUtils.isEmpty(newData) || newData == null) {
-                        Log.e("TAG", "昵称为空");
                         return;
                     }
                     tv_nick_name.setText(newData);
                     //更新数据库里 昵称 的信息
                     DBUtils.getInstance(UserInfoActivity.this).updateUserInfo("nickName", newData, spUserName);
-                } else {
-                    Log.e("TAG", "z昵称为空");
                 }
                 break;
             case CHANGE_SIGNATURE: //签名
