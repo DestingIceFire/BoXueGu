@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hbtangxun.boxuegu.R;
-import com.hbtangxun.boxuegu.Utils.MD5Utils;
+import com.hbtangxun.boxuegu.utils.MD5Utils;
 /**
  * 注册 界面
  */

@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.hbtangxun.boxuegu.R;
-import com.hbtangxun.boxuegu.Utils.ToolUtils;
+import com.hbtangxun.boxuegu.utils.ToolUtils;
 import com.hbtangxun.boxuegu.bean.ExercisesBean;
 
 import java.util.List;

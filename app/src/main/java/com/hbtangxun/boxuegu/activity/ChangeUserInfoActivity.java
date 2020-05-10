@@ -5,13 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
-import android.media.Image;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Selection;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,7 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hbtangxun.boxuegu.R;
-import com.hbtangxun.boxuegu.Utils.ToolUtils;
+import com.hbtangxun.boxuegu.utils.ToolUtils;
 
 /**
  * 修改 个人资料

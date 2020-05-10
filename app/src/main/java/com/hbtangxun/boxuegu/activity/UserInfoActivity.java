@@ -8,16 +8,15 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hbtangxun.boxuegu.R;
-import com.hbtangxun.boxuegu.Utils.AnalysisUtils;
-import com.hbtangxun.boxuegu.Utils.DBUtils;
-import com.hbtangxun.boxuegu.Utils.ToolUtils;
+import com.hbtangxun.boxuegu.utils.AnalysisUtils;
+import com.hbtangxun.boxuegu.utils.DBUtils;
+import com.hbtangxun.boxuegu.utils.ToolUtils;
 import com.hbtangxun.boxuegu.bean.UserBean;
 
 /**

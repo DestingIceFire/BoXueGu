@@ -14,9 +14,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hbtangxun.boxuegu.R;
-import com.hbtangxun.boxuegu.Utils.AnalysisUtils;
-import com.hbtangxun.boxuegu.Utils.MD5Utils;
-import com.hbtangxun.boxuegu.Utils.ToolUtils;
+import com.hbtangxun.boxuegu.utils.AnalysisUtils;
+import com.hbtangxun.boxuegu.utils.MD5Utils;
+import com.hbtangxun.boxuegu.utils.ToolUtils;
 
 /**
  * 修改密码 界面

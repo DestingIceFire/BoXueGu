@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hbtangxun.boxuegu.R;
-import com.hbtangxun.boxuegu.Utils.AnalysisUtils;
+import com.hbtangxun.boxuegu.utils.AnalysisUtils;
 import com.hbtangxun.boxuegu.activity.LoginActivity;
 import com.hbtangxun.boxuegu.activity.SettingActivity;
 import com.hbtangxun.boxuegu.activity.UserInfoActivity;
