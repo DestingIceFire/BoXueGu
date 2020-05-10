@@ -28,6 +28,13 @@ public class AnalysisUtils {
         return loginUserName;
     }
 
+    /**
+     * 解析每章的习题
+     * @param is
+     * @return
+     * @throws Exception
+     */
+
     public static List<ExercisesBean> getExercisesInfos(InputStream is) throws Exception {
         XmlPullParser parser = Xml.newPullParser();
         parser.setInput(is, "utf-8");
