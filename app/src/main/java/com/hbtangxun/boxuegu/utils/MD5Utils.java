@@ -1,9 +1,6 @@
-package com.hbtangxun.boxuegu.Utils;
-
-import android.content.Intent;
+package com.hbtangxun.boxuegu.utils;
 
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 /**
  * 工具类：MD5加密

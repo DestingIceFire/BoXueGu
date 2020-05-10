@@ -1,4 +1,4 @@
-package com.hbtangxun.boxuegu.Utils;
+package com.hbtangxun.boxuegu.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
