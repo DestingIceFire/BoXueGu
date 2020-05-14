@@ -3,6 +3,7 @@ package com.hbtangxun.boxuegu.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Xml;
+import android.widget.ImageView;
 
 import com.hbtangxun.boxuegu.bean.ExercisesBean;
 
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 用于从SP中获取用户名
+ * 课本工具类
  */
 public class AnalysisUtils {
     /**
@@ -30,6 +31,7 @@ public class AnalysisUtils {
 
     /**
      * 解析每章的习题
+     *
      * @param is
      * @return
      * @throws Exception
@@ -67,7 +69,7 @@ public class AnalysisUtils {
                         exercisesInfo.setD(d);
                     } else if ("answer".equals(parser.getName())) {
                         String answer = parser.nextText();
-                        exercisesInfo.setAnswer(answer);
+                        exercisesInfo.setAnswer(Integer.parseInt(answer));
                     }
                     break;
                 case XmlPullParser.END_TAG:
@@ -82,5 +84,20 @@ public class AnalysisUtils {
         return exercisesInfos;
     }
 
+    /**
+     * 设置 A、B、C、D 选项是否可点击
+     *
+     * @param value
+     * @param iv_ex_a
+     * @param iv_ex_b
+     * @param iv_ex_c
+     * @param iv_ex_d
+     */
+    public static void setABCDEnable(boolean value, ImageView iv_ex_a, ImageView iv_ex_b, ImageView iv_ex_c, ImageView iv_ex_d) {
+        iv_ex_a.setEnabled(value);
+        iv_ex_b.setEnabled(value);
+        iv_ex_c.setEnabled(value);
+        iv_ex_d.setEnabled(value);
+    }
 
 }

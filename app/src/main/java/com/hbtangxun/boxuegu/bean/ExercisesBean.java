@@ -16,7 +16,7 @@ public class ExercisesBean {
     private String b;   // 每道题的B选项
     private String c;   // 每道题的C选项
     private String d;   // 每道题的D选项
-    private String answer; // 每道题的正确答案
+    private int answer; // 每道题的正确答案
     // 用户选中的那项（0表示所选项对了，1表示A选项错，2表示B选项错，3表示C选项错，4表示D选项错）
     private int select;
 
@@ -100,11 +100,11 @@ public class ExercisesBean {
         this.d = d;
     }
 
-    public String getAnswer() {
+    public int getAnswer() {
         return answer;
     }
 
-    public void setAnswer(String answer) {
+    public void setAnswer(int answer) {
         this.answer = answer;
     }
 

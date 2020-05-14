@@ -115,7 +115,7 @@ public class ExercisesAdapter extends BaseAdapter {
         return convertView;
     }
 
-    class ViewHolder {
+    private class ViewHolder {
         public TextView tv_title, tv_content, tv_order;
     }
 
