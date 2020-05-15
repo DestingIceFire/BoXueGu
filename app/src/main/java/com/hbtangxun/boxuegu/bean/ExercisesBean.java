@@ -17,6 +17,7 @@ public class ExercisesBean {
     private String c;   // 每道题的C选项
     private String d;   // 每道题的D选项
     private int answer; // 每道题的正确答案
+
     // 用户选中的那项（0表示所选项对了，1表示A选项错，2表示B选项错，3表示C选项错，4表示D选项错）
     private int select;
 

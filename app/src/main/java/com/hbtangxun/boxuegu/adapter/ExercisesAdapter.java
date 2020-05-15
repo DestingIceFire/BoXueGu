@@ -1,6 +1,7 @@
 package com.hbtangxun.boxuegu.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.hbtangxun.boxuegu.R;
+import com.hbtangxun.boxuegu.activity.ExercisesDetailActivity;
 import com.hbtangxun.boxuegu.utils.ToolUtils;
 import com.hbtangxun.boxuegu.bean.ExercisesBean;
 
@@ -79,7 +81,7 @@ public class ExercisesAdapter extends BaseAdapter {
      * @return
      */
     @Override
-    public View getView(int position, View convertView, final ViewGroup parent) {
+    public View getView(final int position, View convertView, final ViewGroup parent) {
         final ViewHolder viewHolder;
         //复用convertView
         if (convertView == null) {
@@ -107,8 +109,11 @@ public class ExercisesAdapter extends BaseAdapter {
                 if (bean == null) {
                     return;
                 }
-                ToolUtils.showToastShort(mContext,
-                        "这是第" + viewHolder.tv_order.getText().toString() + "题");
+                //跳转到对应的习题详情界面
+                Intent intent = new Intent(mContext, ExercisesDetailActivity.class);
+                intent.putExtra("id", bean.getId());
+                intent.putExtra("title", bean.getTitle());
+                mContext.startActivity(intent);
             }
         });
 
