@@ -17,7 +17,7 @@
             android:src="@drawable/chapter_1_icon" />
 
         <TextView
-            android:id="@+id/tv_item_course_title"
+            android:id="@+id/tv_item_course_img"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -33,6 +33,7 @@
     </RelativeLayout>
 
     <TextView
+        android:id="@+id/tv_item_course_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"

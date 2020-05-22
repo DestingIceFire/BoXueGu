@@ -6,6 +6,7 @@
     android:background="#eeeeee">
 
     <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp_advertBanner"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"

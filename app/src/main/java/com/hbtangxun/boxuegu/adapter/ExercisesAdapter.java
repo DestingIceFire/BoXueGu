@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.hbtangxun.boxuegu.R;
 import com.hbtangxun.boxuegu.activity.ExercisesDetailActivity;
-import com.hbtangxun.boxuegu.utils.ToolUtils;
 import com.hbtangxun.boxuegu.bean.ExercisesBean;
 
 import java.util.List;
@@ -91,6 +90,7 @@ public class ExercisesAdapter extends BaseAdapter {
             viewHolder.tv_content = convertView.findViewById(R.id.tv_content);
             viewHolder.tv_order = convertView.findViewById(R.id.tv_order);
         } else {
+            //复用convertView
             viewHolder = (ViewHolder) convertView.getTag();
         }
         //获取position对用Item的数据对象

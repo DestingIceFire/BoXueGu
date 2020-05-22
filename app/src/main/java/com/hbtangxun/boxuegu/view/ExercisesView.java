@@ -12,6 +12,9 @@ import com.hbtangxun.boxuegu.bean.ExercisesBean;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 习题  界面
+ */
 public class ExercisesView {
     private ListView lv_list;
     private ExercisesAdapter adapter;

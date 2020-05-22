@@ -69,6 +69,7 @@ public class ExercisesDetailAdapter extends BaseAdapter {
             viewHolder.iv_ex_d = convertView.findViewById(R.id.iv_ex_d);
             convertView.setTag(viewHolder);
         } else {
+            //复用convertView
             viewHolder = (ViewHolder) convertView.getTag();
         }
 

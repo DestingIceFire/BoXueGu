@@ -27,12 +27,13 @@
         android:background="#e4e4e4" />
 
     <GridView
-        android:id="@+id/iv_list-course"
+        android:id="@+id/grid_course"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="55dp"
         android:divider="@null"
         android:dividerHeight="0dp"
+        android:numColumns="2"
         android:scrollbars="none" />
 
 </LinearLayout>
