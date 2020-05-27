@@ -10,6 +10,15 @@ public class CourseBean {
     private String title;       //每章标题
     private String intro;       //每章视频简介
     private String icon;        //广告栏上的图片
+    private int index;          //轮播图小圆点个数
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
 
     public int getId() {
         return id;
@@ -59,6 +68,7 @@ public class CourseBean {
                 ", title='" + title + '\'' +
                 ", intro='" + intro + '\'' +
                 ", icon='" + icon + '\'' +
+                ", index=" + index +
                 '}';
     }
 }

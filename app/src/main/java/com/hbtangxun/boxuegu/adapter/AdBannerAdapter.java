@@ -36,6 +36,16 @@ public class AdBannerAdapter extends FragmentPagerAdapter implements View.OnTouc
         beans = new ArrayList<>();
     }
 
+    /**
+     * 设置数据更新界面
+     *
+     * @param beans
+     */
+    public void setDatas(List<CourseBean> beans) {
+        this.beans = beans;
+        notifyDataSetChanged();
+    }
+
     @Override
     public Fragment getItem(int position) {
         Bundle args = new Bundle();

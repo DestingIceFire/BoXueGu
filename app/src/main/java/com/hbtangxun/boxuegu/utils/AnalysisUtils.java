@@ -5,9 +5,11 @@ import android.content.SharedPreferences;
 import android.util.Xml;
 import android.widget.ImageView;
 
+import com.hbtangxun.boxuegu.bean.CourseBean;
 import com.hbtangxun.boxuegu.bean.ExercisesBean;
 
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -40,14 +42,14 @@ public class AnalysisUtils {
     public static List<ExercisesBean> getExercisesInfos(InputStream is) throws Exception {
         XmlPullParser parser = Xml.newPullParser();
         parser.setInput(is, "utf-8");
-        List<ExercisesBean> exercisesInfos = null;
+        List<ExercisesBean> infos = null;
         ExercisesBean exercisesInfo = null;
         int type = parser.getEventType();
         while (type != XmlPullParser.END_DOCUMENT) {
             switch (type) {
                 case XmlPullParser.START_TAG:
                     if ("infos".equals(parser.getName())) {
-                        exercisesInfos = new ArrayList<>();
+                        infos = new ArrayList<>();
                     } else if ("exercises".equals(parser.getName())) {
                         exercisesInfo = new ExercisesBean();
                         String ids = parser.getAttributeValue(0);
@@ -74,14 +76,14 @@ public class AnalysisUtils {
                     break;
                 case XmlPullParser.END_TAG:
                     if ("exercises".equals(parser.getName())) {
-                        exercisesInfos.add(exercisesInfo);
+                        infos.add(exercisesInfo);
                         exercisesInfo = null;
                     }
                     break;
             }
             type = parser.next();
         }
-        return exercisesInfos;
+        return infos;
     }
 
     /**
@@ -100,4 +102,41 @@ public class AnalysisUtils {
         iv_ex_d.setEnabled(value);
     }
 
+    public static List<CourseBean> getCourseInfos(InputStream is) throws Exception {
+        XmlPullParser parser = Xml.newPullParser();
+        parser.setInput(is, "utf-8");
+        List<CourseBean> list = null;
+        CourseBean bean = null;
+        int type = parser.getEventType();
+        while (type != XmlPullParser.END_DOCUMENT) {
+            switch (type) {
+                case XmlPullParser.START_TAG:
+                    if ("infos".equals(parser.getName())) {
+                        list = new ArrayList<>();
+                    } else if ("course".equals(parser.getName())) {
+                        bean = new CourseBean();
+                        String ids = parser.getAttributeValue(0);
+                        bean.setId(Integer.parseInt(ids));
+                    } else if ("imgtitle".equals(parser.getName())) {
+                        String imgTitle = parser.nextText();
+                        bean.setImgTitle(imgTitle);
+                    } else if ("title".equals(parser.getName())) {
+                        String title = parser.nextText();
+                        bean.setTitle(title);
+                    } else if ("intro".equals(parser.getName())) {
+                        String intro = parser.nextText();
+                        bean.setIntro(intro);
+                    }
+                    break;
+                case XmlPullParser.END_TAG:
+                    if ("course".equals(parser.getName())) {
+                        list.add(bean);
+                        bean = null;
+                    }
+                    break;
+            }
+            type = parser.next();
+        }
+        return list;
+    }
 }

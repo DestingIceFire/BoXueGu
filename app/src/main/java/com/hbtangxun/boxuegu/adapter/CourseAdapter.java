@@ -20,7 +20,7 @@ import java.util.List;
 public class CourseAdapter extends BaseAdapter {
 
     private Context mContext;
-    private List<List<CourseBean>> cb1;
+    private List<CourseBean> cb1;
 
     //加载图片 实验ing
     private int[] imgs = {R.drawable.chapter_1_icon, R.drawable.chapter_2_icon, R.drawable.chapter_3_icon,
@@ -36,7 +36,7 @@ public class CourseAdapter extends BaseAdapter {
      *
      * @param cb1
      */
-    public void setData(List<List<CourseBean>> cb1) {
+    public void setData(List<CourseBean> cb1) {
         this.cb1 = cb1;
         notifyDataSetChanged();
     }
@@ -58,7 +58,7 @@ public class CourseAdapter extends BaseAdapter {
      * @return
      */
     @Override
-    public List<CourseBean> getItem(int position) {
+    public CourseBean getItem(int position) {
         return cb1 == null ? null : cb1.get(position);
     }
 
@@ -99,22 +99,18 @@ public class CourseAdapter extends BaseAdapter {
             vh = (ViewHolder) convertView.getTag();
         }
 
-        final List<CourseBean> list = getItem(position);
-        if (list != null) {
-            for (int i = 0; i < list.size(); i++) {
-                CourseBean courseBean = list.get(i);
-                vh.tv_item_course_title.setText(courseBean.getTitle());
-                vh.tv_item_course_img.setText(courseBean.getImgTitle());
-                //chapter_1_icon
-                vh.iv_item_course_img.setImageResource(imgs[i]);
-                vh.iv_item_course_img.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //点击进入课程的详情页面
-                        Toast.makeText(mContext, vh.tv_item_course_title.getText().toString(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
+        CourseBean bean = getItem(position);
+        if (bean != null) {
+            vh.tv_item_course_title.setText(bean.getTitle());
+            vh.tv_item_course_img.setText(bean.getImgTitle());
+            vh.iv_item_course_img.setImageResource(imgs[position]);
+            vh.iv_item_course_img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //点击进入课程的详情页面
+                    Toast.makeText(mContext, vh.tv_item_course_title.getText().toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
         return convertView;
     }
