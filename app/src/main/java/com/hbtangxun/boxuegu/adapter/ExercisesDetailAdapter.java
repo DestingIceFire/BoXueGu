@@ -29,6 +29,11 @@ public class ExercisesDetailAdapter extends BaseAdapter {
         this.onSelectedListener = onSelectedListener;
     }
 
+    /**
+     * 设置数据更新页面
+     *
+     * @param eb1
+     */
     public void setData(List<ExercisesBean> eb1) {
         this.eb1 = eb1;
         notifyDataSetChanged();
