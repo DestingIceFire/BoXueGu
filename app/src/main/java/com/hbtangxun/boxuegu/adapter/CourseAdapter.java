@@ -1,6 +1,7 @@
 package com.hbtangxun.boxuegu.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hbtangxun.boxuegu.R;
+import com.hbtangxun.boxuegu.activity.VideoListActivity;
 import com.hbtangxun.boxuegu.bean.CourseBean;
 
 import java.util.List;
@@ -99,7 +101,7 @@ public class CourseAdapter extends BaseAdapter {
             vh = (ViewHolder) convertView.getTag();
         }
 
-        CourseBean bean = getItem(position);
+        final CourseBean bean = getItem(position);
         if (bean != null) {
             vh.tv_item_course_title.setText(bean.getTitle());
             vh.tv_item_course_img.setText(bean.getImgTitle());
@@ -108,7 +110,10 @@ public class CourseAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View v) {
                     //点击进入课程的详情页面
-                    Toast.makeText(mContext, vh.tv_item_course_title.getText().toString(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(mContext, VideoListActivity.class);
+                    intent.putExtra("id", bean.getId());
+                    intent.putExtra("intro", bean.getIntro());
+                    mContext.startActivity(intent);
                 }
             });
         }

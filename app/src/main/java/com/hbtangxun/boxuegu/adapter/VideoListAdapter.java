@@ -77,10 +77,10 @@ public class VideoListAdapter extends BaseAdapter {
             holder.tv_video_title.setText(bean.getSecondTitle());
             //设置选中效果
             if (clickPosition == position) {
-                holder.tv_video_title.setTextColor(Color.parseColor("009958"));
+                holder.tv_video_title.setTextColor(Color.parseColor("#009958"));
                 holder.iv_left_icon.setImageResource(R.drawable.course_intro_icon);
             } else {
-                holder.tv_video_title.setTextColor(Color.parseColor("333333"));
+                holder.tv_video_title.setTextColor(Color.parseColor("#333333"));
                 holder.iv_left_icon.setImageResource(R.drawable.course_bar_icon);
             }
         }
