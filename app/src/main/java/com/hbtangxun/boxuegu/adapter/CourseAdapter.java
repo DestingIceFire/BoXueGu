@@ -24,7 +24,7 @@ public class CourseAdapter extends BaseAdapter {
     private Context mContext;
     private List<CourseBean> cb1;
 
-    //加载图片 实验ing
+    //加载图片
     private int[] imgs = {R.drawable.chapter_1_icon, R.drawable.chapter_2_icon, R.drawable.chapter_3_icon,
             R.drawable.chapter_4_icon, R.drawable.chapter_5_icon, R.drawable.chapter_6_icon, R.drawable.chapter_7_icon,
             R.drawable.chapter_8_icon, R.drawable.chapter_9_icon, R.drawable.chapter_10_icon};

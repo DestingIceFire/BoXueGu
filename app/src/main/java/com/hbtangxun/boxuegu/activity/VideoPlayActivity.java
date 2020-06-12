@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.WindowManager;
+import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -16,7 +17,7 @@ import com.hbtangxun.boxuegu.R;
 public class VideoPlayActivity extends AppCompatActivity {
 
     private VideoView video_view;
-
+    private MediaController controller;
     private String videoPath; //本地视频的地址
     private int position; //传递视频详情界面点击的位置
 
@@ -32,7 +33,7 @@ public class VideoPlayActivity extends AppCompatActivity {
         //横屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-        videoPath = getIntent().getStringExtra("videopath");
+        videoPath = getIntent().getStringExtra("videoPath");
         position = getIntent().getIntExtra("position", 0);
 
         initView();
@@ -41,6 +42,8 @@ public class VideoPlayActivity extends AppCompatActivity {
 
     private void initView() {
         video_view = findViewById(R.id.video_view);
+        controller = new MediaController(this);
+        video_view.setMediaController(controller);
     }
 
     private void initData() {

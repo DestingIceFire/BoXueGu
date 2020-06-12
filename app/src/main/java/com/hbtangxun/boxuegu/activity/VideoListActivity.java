@@ -95,7 +95,7 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
                     }
                     //跳转到视频界面
                     Intent intent = new Intent(VideoListActivity.this, VideoPlayActivity.class);
-                    intent.putExtra("videopath", videoPath);
+                    intent.putExtra("videoPath", videoPath);
                     intent.putExtra("position", position);
                     startActivityForResult(intent, 1);
                 }

@@ -9,6 +9,9 @@ import com.hbtangxun.boxuegu.bean.UserBean;
 import com.hbtangxun.boxuegu.bean.VideoBean;
 import com.hbtangxun.boxuegu.sqlite.SQLiteHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 用于操作数据库
  */
@@ -138,5 +141,31 @@ public class DBUtils {
             delS = true;
         }
         return delS;
+    }
+
+    /**
+     * 获取视频记录信息
+     *
+     * @param userName
+     * @return
+     */
+    public List<VideoBean> getVideoHistory(String userName) {
+        String sql = "SELECT * FROM " + SQLiteHelper.U_VIDEO_PLAY_LIST
+                + " WHERE userName=?";
+        Cursor cursor = db.rawQuery(sql, new String[]{userName});
+        List<VideoBean> vbl = new ArrayList<>();
+        VideoBean bean = null;
+        while (cursor.moveToNext()) {
+            bean = new VideoBean();
+            bean.setChapterId(cursor.getInt(cursor.getColumnIndex("chapterId")));
+            bean.setVideoId(cursor.getInt(cursor.getColumnIndex("videoId")));
+            bean.setVideoPath(cursor.getString(cursor.getColumnIndex("videoPath")));
+            bean.setTitle(cursor.getString(cursor.getColumnIndex("title")));
+            bean.setSecondTitle(cursor.getString(cursor.getColumnIndex("secondTitle")));
+            vbl.add(bean);
+            bean = null;
+        }
+        cursor.close();
+        return vbl;
     }
 }

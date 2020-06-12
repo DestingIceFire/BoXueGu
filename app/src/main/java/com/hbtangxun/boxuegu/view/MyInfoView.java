@@ -13,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hbtangxun.boxuegu.R;
+import com.hbtangxun.boxuegu.activity.PlayHistoryActivity;
+import com.hbtangxun.boxuegu.adapter.PlayHistoryAdapter;
 import com.hbtangxun.boxuegu.utils.AnalysisUtils;
 import com.hbtangxun.boxuegu.activity.LoginActivity;
 import com.hbtangxun.boxuegu.activity.SettingActivity;
@@ -124,6 +126,8 @@ public class MyInfoView implements View.OnClickListener {
             if (readLoginStatus()) {
                 Toast.makeText(mContext, "登录成功，播放记录", Toast.LENGTH_SHORT).show();
                 //进入 播放记录 界面
+                Intent intent = new Intent(mContext, PlayHistoryActivity.class);
+                mContext.startActivity(intent);
             } else {
                 //未登录 提示
                 Toast.makeText(mContext, "您还未登录，请先登录", Toast.LENGTH_SHORT).show();
