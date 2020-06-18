@@ -281,6 +281,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return isLogin;
     }
 
+    /**
+     * 清除登录状态
+     */
     private void clearLoginStatus() {
         SharedPreferences sp = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
         SharedPreferences.Editor edit = sp.edit();
