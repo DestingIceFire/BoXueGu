@@ -135,7 +135,7 @@ public class MyInfoView implements View.OnClickListener {
         } else if (v == rl_course_setting) {
             if (readLoginStatus()) {
                 Intent intent = new Intent(mContext, SettingActivity.class);
-                mContext.startActivity(intent);
+                mContext.startActivityForResult(intent,1);
                 //进入 设置 界面
             } else {
                 //未登录 提示
