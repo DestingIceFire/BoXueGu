@@ -139,7 +139,7 @@ public class MyInfoView implements View.OnClickListener {
         } else if (v == my_course_setting) {
             if (readLoginStatus()) {
                 // 跳转到 设置 页面
-                mContext.startActivityForResult(new Intent(mContext, SettingActivity.class), 1);
+                mContext.startActivity(new Intent(mContext, SettingActivity.class));
             } else {
                 ToolUtils.showShortToast(mContext, "您还未登录，请先登录");
             }

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hbtangxun.boxuegu2022.R;
+import com.hbtangxun.boxuegu2022.utils.AnalysisUtils;
 import com.hbtangxun.boxuegu2022.utils.ToolUtils;
 
 /**
@@ -31,12 +32,16 @@ public class SettingActivity extends Activity implements View.OnClickListener {
     //退出登录
     private TextView tv_exit_login;
 
+    public static SettingActivity instance;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
         //设置竖屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        instance = this;
 
         initView();
         initData();
@@ -70,7 +75,7 @@ public class SettingActivity extends Activity implements View.OnClickListener {
             finish();
         } else if (v == tv_modify_psw) {
             //修改密码
-            ToolUtils.showShortToast(this, "修改密码");
+            startActivity(new Intent(this, ModifyPswActivity.class));
         } else if (v == tv_security_parent) {
             //设置密保
             ToolUtils.showShortToast(this, "设置密保");
@@ -78,28 +83,8 @@ public class SettingActivity extends Activity implements View.OnClickListener {
             //退出登录
             ToolUtils.showShortToast(this, "退出登录");
             //1、清除SP中登录状态和登录时的用户名
-            cleanLoginStatus();
-            //2、退出成功后，需要将“登录状态”传给MainActivity
-            Intent data = new Intent();
-            data.putExtra("isLogin", false);
-            setResult(RESULT_OK,data);
+            AnalysisUtils.cleanLoginStatus(this);
             finish();
         }
-    }
-
-    /**
-     * 清除SP中登录状态和登录时的用户名
-     */
-    private void cleanLoginStatus() {
-        // 获取SP对象
-        SharedPreferences sp = getSharedPreferences("loginInfo", MODE_PRIVATE);
-        // 获取编辑器
-        SharedPreferences.Editor edit = sp.edit();
-        // 清除登录状态
-        edit.putBoolean("isLogin", false);
-        // 清除登录用户名
-        edit.putString("loginUserName", "");
-        // 提交
-        edit.commit();
     }
 }

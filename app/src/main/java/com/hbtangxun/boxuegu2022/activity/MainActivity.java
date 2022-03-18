@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hbtangxun.boxuegu2022.R;
+import com.hbtangxun.boxuegu2022.utils.AnalysisUtils;
 import com.hbtangxun.boxuegu2022.utils.ToolUtils;
 import com.hbtangxun.boxuegu2022.view.MyInfoView;
 
@@ -262,7 +263,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             } else {
                 finish();
                 if (readLoginStatus()) {
-                    clearLoginStatus();
+                    AnalysisUtils.cleanLoginStatus(this);
                 }
                 System.exit(0);
             }
@@ -282,17 +283,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
         return isLogin;
     }
 
-    /**
-     * 清除登录状态
-     */
-    private void clearLoginStatus() {
-        SharedPreferences sp = getSharedPreferences("loginInfo", MODE_PRIVATE);
-        SharedPreferences.Editor edit = sp.edit();
-        edit.putBoolean("isLogin", false);
-        edit.putString("loginUserName", "");
-        edit.commit();
+    @Override
+    protected void onStart() {
+        super.onStart();
+        boolean isLogin = readLoginStatus();
+        if (myInfoView != null) {
+            myInfoView.setLoginParams(isLogin);
+        }
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -302,9 +300,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
             if (isLogin) {
                 clearBottomImageState();
                 selectDisplayView(0);
-            }
-            if (myInfoView != null) {
-                myInfoView.setLoginParams(isLogin);
             }
         }
     }
