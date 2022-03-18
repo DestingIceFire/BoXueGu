@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.hbtangxun.boxuegu2022.R;
 import com.hbtangxun.boxuegu2022.activity.LoginActivity;
+import com.hbtangxun.boxuegu2022.activity.SettingActivity;
 import com.hbtangxun.boxuegu2022.utils.AnalysisUtils;
 import com.hbtangxun.boxuegu2022.utils.ToolUtils;
 
@@ -31,6 +32,7 @@ public class MyInfoView implements View.OnClickListener {
 
     /**
      * 构造器
+     *
      * @param context
      */
     public MyInfoView(Activity context) {
@@ -91,6 +93,7 @@ public class MyInfoView implements View.OnClickListener {
 
     /**
      * 登录成功后设置 我的 界面的 用户名
+     *
      * @param isLogin
      */
     public void setLoginParams(boolean isLogin) {
@@ -113,6 +116,7 @@ public class MyInfoView implements View.OnClickListener {
 
     /**
      * 点击事件
+     *
      * @param v
      */
     @Override
@@ -135,7 +139,7 @@ public class MyInfoView implements View.OnClickListener {
         } else if (v == my_course_setting) {
             if (readLoginStatus()) {
                 // 跳转到 设置 页面
-                ToolUtils.showShortToast(mContext, "设置");
+                mContext.startActivityForResult(new Intent(mContext, SettingActivity.class), 1);
             } else {
                 ToolUtils.showShortToast(mContext, "您还未登录，请先登录");
             }
