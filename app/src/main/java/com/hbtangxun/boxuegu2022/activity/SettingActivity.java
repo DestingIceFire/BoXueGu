@@ -78,7 +78,9 @@ public class SettingActivity extends Activity implements View.OnClickListener {
             startActivity(new Intent(this, ModifyPswActivity.class));
         } else if (v == tv_security_parent) {
             //设置密保
-            ToolUtils.showShortToast(this, "设置密保");
+            Intent intent = new Intent(this, FindPswActivity.class);
+            intent.putExtra("from", "security");
+            startActivity(intent);
         } else if (v == tv_exit_login) {
             //退出登录
             ToolUtils.showShortToast(this, "退出登录");
