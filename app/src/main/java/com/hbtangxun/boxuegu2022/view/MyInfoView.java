@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.hbtangxun.boxuegu2022.R;
 import com.hbtangxun.boxuegu2022.activity.LoginActivity;
 import com.hbtangxun.boxuegu2022.activity.SettingActivity;
+import com.hbtangxun.boxuegu2022.activity.UserInfoActivity;
 import com.hbtangxun.boxuegu2022.utils.AnalysisUtils;
 import com.hbtangxun.boxuegu2022.utils.ToolUtils;
 
@@ -124,7 +125,8 @@ public class MyInfoView implements View.OnClickListener {
         if (v == ll_head) {
             if (readLoginStatus()) {
                 // 跳转到 个人资料 页面
-                ToolUtils.showShortToast(mContext, "个人资料");
+                Intent intent = new Intent(mContext, UserInfoActivity.class);
+                mContext.startActivity(intent);
             } else {
                 // 跳转到 登录 页面
                 mContext.startActivityForResult(new Intent(mContext, LoginActivity.class), 1);
