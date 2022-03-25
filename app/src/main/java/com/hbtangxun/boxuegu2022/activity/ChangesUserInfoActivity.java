@@ -30,6 +30,7 @@ public class ChangesUserInfoActivity extends AppCompatActivity implements View.O
 
     private EditText et_content;
     private ImageView iv_delete;
+    private TextView tv_changes_length;
 
     private String content, spUserName;
     private int flag;
@@ -54,6 +55,7 @@ public class ChangesUserInfoActivity extends AppCompatActivity implements View.O
         rl_title_bar = findViewById(R.id.rl_title_bar);
         et_content = findViewById(R.id.et_content);
         iv_delete = findViewById(R.id.iv_delete);
+        tv_changes_length = findViewById(R.id.tv_changes_length);
     }
 
     private void initData() {
@@ -72,6 +74,12 @@ public class ChangesUserInfoActivity extends AppCompatActivity implements View.O
         if (!TextUtils.isEmpty(content)) {
             et_content.setText(content);
             et_content.setSelection(content.length());
+            if (flag == UserInfoActivity.CHANGES_NICKNAME) {
+                tv_changes_length.setText(content.length() + "/8");
+            } else {
+                tv_changes_length.setText(content.length() + "/16");
+            }
+
         }
 
         editListener();
@@ -86,11 +94,12 @@ public class ChangesUserInfoActivity extends AppCompatActivity implements View.O
         et_content.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                // 此方法为 输入文字 之前
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // 此方法为 输入文字 之中
                 Editable editable = et_content.getText();
                 int length = editable.length();//获取 输入文本的长度
                 // 当文本的长度大于0时，删除按钮显示
@@ -117,6 +126,7 @@ public class ChangesUserInfoActivity extends AppCompatActivity implements View.O
                             }
                             //设置新光标的所在的位置
                             Selection.setSelection(editable, selectionEnd);
+
                         }
                         break;
                     case UserInfoActivity.CHANGES_SIGNATURE:
@@ -141,6 +151,25 @@ public class ChangesUserInfoActivity extends AppCompatActivity implements View.O
 
             @Override
             public void afterTextChanged(Editable s) {
+                // 此方法为 输入文字 之后
+                //提示用户 已经输入的文字长度 以及 最大的长度
+                int selectionEnd = Selection.getSelectionEnd(s);
+                if (flag == UserInfoActivity.CHANGES_NICKNAME) {
+                    if (selectionEnd > 8) {
+                        int eight = 8;
+                        tv_changes_length.setText(eight + "/8");
+                        ToolUtils.showShortToast(ChangesUserInfoActivity.this,"您输入的文字达到最大限度");
+                    } else {
+                        tv_changes_length.setText(selectionEnd + "/8");
+                    }
+                } else {
+                    if (selectionEnd > 16) {
+                        int sixteen = 16;
+                        tv_changes_length.setText(sixteen + "/16");
+                    } else {
+                        tv_changes_length.setText(selectionEnd + "/16");
+                    }
+                }
 
             }
         });
