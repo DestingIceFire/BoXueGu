@@ -29,4 +29,5 @@ public class ToolUtils {
     public static void showLongToast(Context context, String msg) {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
     }
+
 }
