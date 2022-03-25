@@ -158,7 +158,7 @@ public class ChangesUserInfoActivity extends AppCompatActivity implements View.O
                     if (selectionEnd > 8) {
                         int eight = 8;
                         tv_changes_length.setText(eight + "/8");
-                        ToolUtils.showShortToast(ChangesUserInfoActivity.this,"您输入的文字达到最大限度");
+                        ToolUtils.showShortToast(ChangesUserInfoActivity.this, "您输入的文字达到最大限度");
                     } else {
                         tv_changes_length.setText(selectionEnd + "/8");
                     }
