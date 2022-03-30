@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_subject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingMultiplier="1.5"
+        android:text="这是第一道题"
+        android:textColor="#000"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_ex_a"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/exercises_a" />
+
+        <TextView
+            android:id="@+id/tv_ex_a"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="8dp"
+            android:lineSpacingMultiplier="1.5"
+            android:text="A"
+            android:textColor="#000"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_ex_b"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/exercises_b" />
+
+        <TextView
+            android:id="@+id/tv_ex_b"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="8dp"
+            android:lineSpacingMultiplier="1.5"
+            android:text="B"
+            android:textColor="#000"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_ex_c"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/exercises_c" />
+
+        <TextView
+            android:id="@+id/tv_ex_c"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="8dp"
+            android:lineSpacingMultiplier="1.5"
+            android:text="C"
+            android:textColor="#000"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_ex_d"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/exercises_d" />
+
+        <TextView
+            android:id="@+id/tv_ex_d"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="8dp"
+            android:lineSpacingMultiplier="1.5"
+            android:text="D"
+            android:textColor="#000"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+</LinearLayout>
