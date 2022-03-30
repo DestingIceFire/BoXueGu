@@ -1,6 +1,7 @@
 package com.hbtangxun.boxuegu2022.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.hbtangxun.boxuegu2022.R;
+import com.hbtangxun.boxuegu2022.activity.ExercisesDetailActivity;
 import com.hbtangxun.boxuegu2022.bean.ExercisesBean;
 
 import java.util.List;
@@ -105,6 +107,10 @@ public class ExercisesAdapter extends BaseAdapter {
                     return;
                 }
                 //跳转到对应的习题详情界面
+                Intent intent = new Intent(mContext, ExercisesDetailActivity.class);
+                intent.putExtra("id", bean.getId());
+                intent.putExtra("title", bean.getTitle());
+                mContext.startActivity(intent);
             }
         });
 
