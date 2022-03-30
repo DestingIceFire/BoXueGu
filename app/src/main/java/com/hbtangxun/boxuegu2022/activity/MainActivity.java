@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.hbtangxun.boxuegu2022.R;
 import com.hbtangxun.boxuegu2022.utils.AnalysisUtils;
 import com.hbtangxun.boxuegu2022.utils.ToolUtils;
+import com.hbtangxun.boxuegu2022.view.ExercisesView;
 import com.hbtangxun.boxuegu2022.view.MyInfoView;
 
 public class MainActivity extends Activity implements View.OnClickListener {
@@ -45,6 +46,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     // 我的 界面
     private MyInfoView myInfoView;
+
+    // 习题 界面
+    private ExercisesView exercisesView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -224,6 +228,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case 1:
                 // 习题界面
                 Log.e("TAG", "MainActivity createView --- 1");
+                if(exercisesView == null) {
+                    exercisesView = new ExercisesView(this);
+                    mBodyLayout.addView(exercisesView.getView());
+                }else {
+                    exercisesView.getView();
+                }
+                exercisesView.showView();
                 break;
             case 2:
                 // 我的界面
