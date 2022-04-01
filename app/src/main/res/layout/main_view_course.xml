@@ -7,29 +7,39 @@
 
     <include layout="@layout/main_adbanner" />
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:drawableLeft="@drawable/course_intro_icon"
-        android:drawablePadding="5dp"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="3dp"
-        android:text="Android 基础课程1-10视频"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="8dp"
+            android:src="@drawable/course_intro_icon" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:gravity="center_vertical"
+            android:text="Android 基础课程1-10视频"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:background="#4e4e4e" />
+        android:background="#e4e4e4" />
 
     <GridView
-        android:id="@+id/gird_course"
+        android:id="@+id/grid_course"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="55dp"

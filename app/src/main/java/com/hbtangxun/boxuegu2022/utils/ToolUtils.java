@@ -1,6 +1,10 @@
 package com.hbtangxun.boxuegu2022.utils;
 
+import android.app.Activity;
 import android.content.Context;
+import android.icu.text.DisplayContext;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.widget.Toast;
 
 /**
@@ -30,4 +34,16 @@ public class ToolUtils {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * 读取屏幕宽度
+     *
+     * @param mActivity
+     * @return
+     */
+    public static int getScreenWidth(Activity mActivity) {
+        DisplayMetrics metrics = new DisplayMetrics();
+        Display display = mActivity.getWindowManager().getDefaultDisplay();
+        display.getMetrics(metrics);
+        return metrics.widthPixels;
+    }
 }

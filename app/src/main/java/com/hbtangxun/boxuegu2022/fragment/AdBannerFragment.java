@@ -31,14 +31,16 @@ public class AdBannerFragment extends Fragment {
         super.onCreate(savedInstanceState);
         // Fragment 接收数据
         Bundle arguments = getArguments();
-        ab = arguments.getString("ab");
+        ab = arguments.getString("ad");
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        //创建广告图片控件
         iv = new ImageView(getActivity());
-        ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        ViewGroup.LayoutParams lp =
+                new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         iv.setLayoutParams(lp);
         iv.setScaleType(ImageView.ScaleType.FIT_XY);
         return iv;

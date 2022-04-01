@@ -3,8 +3,7 @@
     android:id="@+id/rl_adBanner"
     android:layout_width="match_parent"
     android:layout_height="160dp"
-    android:background="#eeeeee"
-    android:orientation="vertical">
+    android:background="#eeeeee">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vp_advertBanner"
@@ -25,10 +24,10 @@
 
         <com.hbtangxun.boxuegu2022.view.ViewPagerIndicator
             android:id="@+id/vpi_advert_indicator"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_weight="1"
+            android:gravity="center"
             android:padding="4dp" />
 
     </LinearLayout>
