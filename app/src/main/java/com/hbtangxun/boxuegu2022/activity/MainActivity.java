@@ -1,6 +1,5 @@
 package com.hbtangxun.boxuegu2022.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -15,13 +14,16 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.fragment.app.FragmentActivity;
+
 import com.hbtangxun.boxuegu2022.R;
 import com.hbtangxun.boxuegu2022.utils.AnalysisUtils;
 import com.hbtangxun.boxuegu2022.utils.ToolUtils;
+import com.hbtangxun.boxuegu2022.view.CourseView;
 import com.hbtangxun.boxuegu2022.view.ExercisesView;
 import com.hbtangxun.boxuegu2022.view.MyInfoView;
 
-public class MainActivity extends Activity implements View.OnClickListener {
+public class MainActivity extends FragmentActivity implements View.OnClickListener {
 
     //标题栏
     private TextView tv_back;
@@ -49,6 +51,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     // 习题 界面
     private ExercisesView exercisesView;
+
+    //课程 界面
+    private CourseView courseView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -223,11 +228,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
         switch (index) {
             case 0:
                 // 课程界面
-                Log.e("TAG", "MainActivity createView --- 0");
+                if(courseView == null) {
+                    courseView = new CourseView(this);
+                    mBodyLayout.addView(courseView.getView());
+                }else {
+                    courseView.getView();
+                }
+                courseView.showView();
                 break;
             case 1:
                 // 习题界面
-                Log.e("TAG", "MainActivity createView --- 1");
                 if(exercisesView == null) {
                     exercisesView = new ExercisesView(this);
                     mBodyLayout.addView(exercisesView.getView());
@@ -238,7 +248,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case 2:
                 // 我的界面
-                Log.e("TAG", "MainActivity createView --- 2");
                 if (myInfoView == null) {
                     // 初始化
                     myInfoView = new MyInfoView(this);
