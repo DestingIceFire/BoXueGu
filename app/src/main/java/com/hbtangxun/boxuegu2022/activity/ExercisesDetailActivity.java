@@ -62,6 +62,15 @@ public class ExercisesDetailActivity extends AppCompatActivity {
         title_text = findViewById(R.id.title_text);
         rl_title_bar = findViewById(R.id.rl_title_bar);
         lv_ex_list = findViewById(R.id.lv_ex_list);
+
+        //在代码界面添加一个视图控件
+        TextView textView = new TextView(this);
+        textView.setText("一、选择题");
+        textView.setTextSize(16.0f);
+        textView.setTextColor(Color.parseColor("#000000"));
+        textView.setPadding(10, 15, 0, 10);
+        lv_ex_list.addHeaderView(textView);
+
     }
 
     private void initData() {
