@@ -254,7 +254,7 @@ public class ExercisesDetailAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public class ViewHolder {
+    private class ViewHolder {
         public ImageView iv_ex_a, iv_ex_b, iv_ex_c, iv_ex_d;
         public TextView tv_subject, tv_ex_a, tv_ex_b, tv_ex_c, tv_ex_d;
     }
