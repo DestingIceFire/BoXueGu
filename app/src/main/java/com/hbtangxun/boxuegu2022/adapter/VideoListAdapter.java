@@ -18,14 +18,14 @@ import java.util.List;
 /**
  * 视频 适配器
  */
-public class VideoLIstAdapter extends BaseAdapter {
+public class VideoListAdapter extends BaseAdapter {
 
     private Context mContext;
     private List<VideoBean> beans;
     private int clickFlag = -1; // 点击时选中的位置
     private OnClickItemListener itemListener;
 
-    public VideoLIstAdapter(Context mContext, OnClickItemListener itemListener) {
+    public VideoListAdapter(Context mContext, OnClickItemListener itemListener) {
         this.mContext = mContext;
         this.itemListener = itemListener;
     }
@@ -35,6 +35,10 @@ public class VideoLIstAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    /**
+     * 点击的位置
+     * @param clickPosition
+     */
     public void setClickPosition(int clickPosition) {
         this.clickFlag = clickPosition;
     }

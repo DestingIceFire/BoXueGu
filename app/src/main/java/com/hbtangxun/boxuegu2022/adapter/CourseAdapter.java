@@ -1,6 +1,7 @@
 package com.hbtangxun.boxuegu2022.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hbtangxun.boxuegu2022.R;
+import com.hbtangxun.boxuegu2022.activity.VideoListActivity;
 import com.hbtangxun.boxuegu2022.bean.CourseBean;
 import com.hbtangxun.boxuegu2022.utils.ToolUtils;
 
@@ -67,16 +69,20 @@ public class CourseAdapter extends BaseAdapter {
             vh = (ViewHolder) convertView.getTag();
         }
 
-        final CourseBean item = getItem(position);
-        if (item != null) {
-            vh.tv_item_course_title.setText(item.getTitle());
-            vh.tv_item_course_img.setText(item.getImgTitle());
+        final CourseBean bean = getItem(position);
+        if (bean != null) {
+            vh.tv_item_course_title.setText(bean.getTitle());
+            vh.tv_item_course_img.setText(bean.getImgTitle());
             vh.iv_item_course_img.setImageResource(imgs[position]);
             vh.iv_item_course_img.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     //点击进入对应的课程详情界面
-                    ToolUtils.showShortToast(mContext, "课程详情" + position);
+                    Intent intent = new Intent(mContext, VideoListActivity.class);
+                    intent.putExtra("id", bean.getId());
+                    intent.putExtra("intro", bean.getIntro());
+                    intent.putExtra("title", bean.getTitle());
+                    mContext.startActivity(intent);
                 }
             });
         }
