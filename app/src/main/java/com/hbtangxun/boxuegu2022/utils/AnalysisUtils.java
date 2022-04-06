@@ -116,7 +116,12 @@ public class AnalysisUtils {
 
     }
 
-
+    /**
+     * 解析每章的课程视频信息
+     * @param is
+     * @return
+     * @throws Exception
+     */
     public static List<CourseBean> getCoursesInfos(InputStream is) throws Exception {
         XmlPullParser parser = Xml.newPullParser();
         parser.setInput(is, "utf-8");
