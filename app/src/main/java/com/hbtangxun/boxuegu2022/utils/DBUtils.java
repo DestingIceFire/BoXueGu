@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.hbtangxun.boxuegu2022.bean.UserBean;
+import com.hbtangxun.boxuegu2022.bean.VideoBean;
 import com.hbtangxun.boxuegu2022.sqlite.SQLiteHelper;
 
 /**
@@ -71,9 +72,52 @@ public class DBUtils {
      * @param userName
      */
     public void updateUserName(String key, String value, String userName) {
-            ContentValues cv = new ContentValues();
+        ContentValues cv = new ContentValues();
         cv.put(key, value);
         db.update(SQLiteHelper.U_USERINFO, cv, "userName=?", new String[]{userName});
+    }
+
+    /**
+     * 保存视频播放记录
+     *
+     * @param bean
+     * @param name
+     */
+    public void saveVideoPlayList(VideoBean bean, String name) {
+        // 判断数据库里是否有存放该数据，有就删，没有直接存
+        if (hasVideoPlay(bean.getChapterId(), bean.getVideoId(), name)) {
+            //
+        }
+
+        ContentValues cv = new ContentValues();
+        cv.put("userName", name);
+        cv.put("chapterId", bean.getChapterId());
+        cv.put("videoId", bean.getVideoId());
+        cv.put("videoPath", bean.getVideoPath());
+        cv.put("title", bean.getTitle());
+        cv.put("secondTitle", bean.getSecondTitle());
+        db.insert(SQLiteHelper.U_USERINFO, null, cv);
+
+    }
+
+    /**
+     * 判断视频记录是否存在
+     *
+     * @param chapterId
+     * @param videoId
+     * @param name
+     * @return
+     */
+    private boolean hasVideoPlay(int chapterId, String videoId, String name) {
+        boolean hasVideo = false;
+        String sql = "SELECT * FROM " + SQLiteHelper.U_VIDEO_PLAY_LIST
+                + " WHERE chapterId=? AND videoId=? And userName=?";
+        Cursor cursor = db.rawQuery(sql, new String[]{chapterId + "", videoId + "", name});
+        if (cursor.moveToFirst()) {
+            hasVideo = true;
+        }
+        cursor.close();
+        return hasVideo;
     }
 
 }

@@ -6,19 +6,30 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hbtangxun.boxuegu2022.R;
 import com.hbtangxun.boxuegu2022.adapter.VideoListAdapter;
 import com.hbtangxun.boxuegu2022.bean.VideoBean;
+import com.hbtangxun.boxuegu2022.utils.AnalysisUtils;
 import com.hbtangxun.boxuegu2022.utils.DBUtils;
 import com.hbtangxun.boxuegu2022.utils.OnClickItemListener;
 import com.hbtangxun.boxuegu2022.utils.ToolUtils;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
 public class VideoListActivity extends AppCompatActivity implements View.OnClickListener {
@@ -55,6 +66,7 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
         dbUtils = DBUtils.getInstance(this);
 
         initView();
+        jsonData();
         initData();
     }
 
@@ -90,6 +102,10 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
                 if (TextUtils.isEmpty(videoPath)) {
                     ToolUtils.showShortToast(VideoListActivity.this, "本地没有视频，暂时无法播放");
                 } else {
+                    if(AnalysisUtils.readLoginStatus(VideoListActivity.this)) {
+                        String name = AnalysisUtils.readLoginUserName(VideoListActivity.this);
+                        dbUtils.saveVideoPlayList(bean, name);
+                    }
                     //跳转到播放视频的页面
                 }
 
@@ -101,6 +117,72 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
         tv_video.setOnClickListener(this);
         tv_back.setOnClickListener(this);
     }
+
+    /**
+     * 解析JSON数据
+     */
+    private void jsonData() {
+        JSONArray jsonArray;
+        InputStream is;
+        try {
+            is = getResources().getAssets().open("data.json");
+
+            jsonArray = new JSONArray(read(is));
+            beanList = new ArrayList<>();
+            for (int i = 0; i < jsonArray.length(); i++) {
+                VideoBean bean = new VideoBean();
+                JSONObject jo = jsonArray.getJSONObject(i);
+                // 如果视频的ID等于视频详情的ID
+                if (jo.getInt("chapterId") == chapterId) {
+                    bean.setChapterId(jo.getInt("chapterId"));
+                    bean.setVideoId(jo.getString("videoId"));
+                    bean.setTitle(jo.getString("title"));
+                    bean.setSecondTitle(jo.getString("secondTitle"));
+                    bean.setVideoPath(jo.getString("videoPath"));
+                    beanList.add(bean);
+                }
+                bean = null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 读取数据流
+     *
+     * @param is
+     * @return
+     */
+    private String read(InputStream is) {
+        BufferedReader reader = null;
+        StringBuilder sb = null;
+        String line = null;
+        try {
+            sb = new StringBuilder();
+            reader = new BufferedReader(new InputStreamReader(is));
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
+                sb.append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        } finally {
+            try {
+                if (is != null) {
+                    is.close();
+                }
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return sb.toString();
+    }
+
 
     @Override
     public void onClick(View v) {

@@ -50,6 +50,18 @@ public class AnalysisUtils {
     }
 
     /**
+     * 获取登录状态
+     *
+     * @param context
+     * @return
+     */
+    public static boolean readLoginStatus(Context context) {
+        // 获取SP对象
+        SharedPreferences sp = context.getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
+        return sp.getBoolean("isLogin", false);
+    }
+
+    /**
      * 解析习题详情界面的xml数据
      *
      * @param is
@@ -118,6 +130,7 @@ public class AnalysisUtils {
 
     /**
      * 解析每章的课程视频信息
+     *
      * @param is
      * @return
      * @throws Exception
