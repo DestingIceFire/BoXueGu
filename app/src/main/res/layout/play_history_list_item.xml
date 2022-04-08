@@ -11,7 +11,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/iv_video_icon"
+            android:id="@+id/iv_his_icon"
             android:layout_width="100dp"
             android:layout_height="70dp"
             android:src="@drawable/video_play_icon1" />
@@ -32,7 +32,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_adapter_title"
+            android:id="@+id/tv_his_title"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
@@ -41,7 +41,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/tv_adapter_intro"
+            android:id="@+id/tv_his_second_title"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginTop="5dp"

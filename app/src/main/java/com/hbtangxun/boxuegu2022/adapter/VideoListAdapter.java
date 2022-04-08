@@ -100,7 +100,7 @@ public class VideoListAdapter extends BaseAdapter {
         return convertView;
     }
 
-    class ViewHolder {
+    private class ViewHolder {
         ImageView iv_left_icon;
         TextView tv_video_title;
     }

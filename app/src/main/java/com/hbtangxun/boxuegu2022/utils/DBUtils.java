@@ -9,6 +9,9 @@ import com.hbtangxun.boxuegu2022.bean.UserBean;
 import com.hbtangxun.boxuegu2022.bean.VideoBean;
 import com.hbtangxun.boxuegu2022.sqlite.SQLiteHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 用于操作数据库的工具类
  */
@@ -87,7 +90,7 @@ public class DBUtils {
         // 判断数据库里是否有存放该数据，有就删，没有直接存
         if (hasVideoPlay(bean.getChapterId(), bean.getVideoId(), name)) {
             boolean isDelete = delVideoPlay(bean.getChapterId(), bean.getVideoId(), name);
-            if(!isDelete) {
+            if (!isDelete) {
                 //没有删除成功，则需要跳出这个方法，不再执行下列语句
                 return;
             }
@@ -141,6 +144,30 @@ public class DBUtils {
             delS = true;
         }
         return delS;
+    }
+
+    /**
+     * 获取视频记录信息
+     *
+     * @param userName
+     * @return
+     */
+    public List<VideoBean> getVideoHistory(String userName) {
+        String sql = "SELECT * FROM " + SQLiteHelper.U_VIDEO_PLAY_LIST + " WHERE userName=?";
+        Cursor cursor = db.rawQuery(sql, new String[]{userName});
+        List<VideoBean> vbl = new ArrayList<>();
+        VideoBean bean = null;
+        while (cursor.moveToNext()) {
+            bean = new VideoBean();
+            bean.setChapterId(cursor.getInt(cursor.getColumnIndex("chapterId")));
+            bean.setVideoId(cursor.getString(cursor.getColumnIndex("videoId")));
+            bean.setTitle(cursor.getString(cursor.getColumnIndex("title")));
+            bean.setSecondTitle(cursor.getString(cursor.getColumnIndex("secondTitle")));
+            bean.setVideoPath(cursor.getString(cursor.getColumnIndex("videoPath")));
+            vbl.add(bean);
+            bean = null;
+        }
+        return vbl;
     }
 
 }
