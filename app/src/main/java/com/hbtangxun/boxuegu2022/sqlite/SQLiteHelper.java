@@ -14,7 +14,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     private static String DB_NAME = "hbtangxun.db";
     private static final int DB_VERSION = 1;
     public static final String U_USERINFO = "userinfo"; //个人资料
-    public static final String U_VIDEO_PLAY_LIST = "u_video_play_list"; //播放记录
+    public static final String U_VIDEO_PLAY_LIST = "videoplaylist"; //播放记录
 
 
     public SQLiteHelper(@Nullable Context context) {
@@ -32,7 +32,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                 + "signature VARCHAR"   // 个性签名
                 + ")");
         //创建视频播放记录表
-        db.execSQL("CREATE TABLE IF NOT EXISTS " + U_USERINFO + "("
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + U_VIDEO_PLAY_LIST + "("
                 + "_id INTEGER PRIMARY KEY AUTOINCREMENT, " // ID 主键 自增长
                 + "userName VARCHAR, "  // 用户名
                 + "chapterId VARCHAR, "  // 章节ID

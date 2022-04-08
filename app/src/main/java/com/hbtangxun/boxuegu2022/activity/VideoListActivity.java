@@ -1,7 +1,9 @@
 package com.hbtangxun.boxuegu2022.activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -102,11 +104,15 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
                 if (TextUtils.isEmpty(videoPath)) {
                     ToolUtils.showShortToast(VideoListActivity.this, "本地没有视频，暂时无法播放");
                 } else {
-                    if(AnalysisUtils.readLoginStatus(VideoListActivity.this)) {
+                    if (AnalysisUtils.readLoginStatus(VideoListActivity.this)) {
                         String name = AnalysisUtils.readLoginUserName(VideoListActivity.this);
                         dbUtils.saveVideoPlayList(bean, name);
                     }
                     //跳转到播放视频的页面
+                    Intent intent = new Intent(VideoListActivity.this, VideoPlayActivity.class);
+                    intent.putExtra("videoPath", bean.getVideoPath());
+                    intent.putExtra("position", position);
+                    startActivity(intent);
                 }
 
             }
@@ -206,6 +212,23 @@ public class VideoListActivity extends AppCompatActivity implements View.OnClick
                 tv_intro.setBackgroundColor(Color.parseColor("#ffffff"));
                 tv_video.setBackgroundColor(Color.parseColor("#30b4ff"));
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null) {
+            //接收播放界面传过来的被选中视频的位置
+            int position = data.getIntExtra("position", 0);
+            //设置被选中的位置
+            adapter.setClickPosition(position);
+            lv_video_list.setVisibility(View.VISIBLE);
+            sv_chapter_intro.setVisibility(View.GONE);
+            tv_intro.setTextColor(Color.parseColor("#000000"));
+            tv_video.setTextColor(Color.parseColor("#ffffff"));
+            tv_intro.setBackgroundColor(Color.parseColor("#ffffff"));
+            tv_video.setBackgroundColor(Color.parseColor("#30b4ff"));
         }
     }
 }

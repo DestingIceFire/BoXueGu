@@ -100,7 +100,7 @@ public class DBUtils {
         cv.put("videoPath", bean.getVideoPath());
         cv.put("title", bean.getTitle());
         cv.put("secondTitle", bean.getSecondTitle());
-        db.insert(SQLiteHelper.U_USERINFO, null, cv);
+        db.insert(SQLiteHelper.U_VIDEO_PLAY_LIST, null, cv);
 
     }
 
@@ -121,6 +121,7 @@ public class DBUtils {
             hasVideo = true;
         }
         cursor.close();
+
         return hasVideo;
     }
 
