@@ -138,9 +138,9 @@ public class DBUtils {
      */
     private boolean delVideoPlay(int chapterId, String videoId, String name) {
         boolean delS = false;
-        int num = db.delete(SQLiteHelper.U_VIDEO_PLAY_LIST, "chapterId=? AND videoId=? And userName=?",
+        int num = db.delete(SQLiteHelper.U_VIDEO_PLAY_LIST, "chapterId=? AND videoId=? AND userName=?",
                 new String[]{chapterId + "", videoId + "", name});
-        if (num > 1) {
+        if (num > 0) {
             delS = true;
         }
         return delS;

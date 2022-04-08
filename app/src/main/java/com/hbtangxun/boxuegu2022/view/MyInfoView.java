@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.hbtangxun.boxuegu2022.R;
 import com.hbtangxun.boxuegu2022.activity.LoginActivity;
+import com.hbtangxun.boxuegu2022.activity.PlayHistoryActivity;
 import com.hbtangxun.boxuegu2022.activity.SettingActivity;
 import com.hbtangxun.boxuegu2022.activity.UserInfoActivity;
 import com.hbtangxun.boxuegu2022.utils.AnalysisUtils;
@@ -134,7 +135,7 @@ public class MyInfoView implements View.OnClickListener {
         } else if (v == my_course_history) {
             if (readLoginStatus()) {
                 // 跳转到 播放记录 页面
-                ToolUtils.showShortToast(mContext, "播放记录");
+                mContext.startActivity(new Intent(mContext, PlayHistoryActivity.class));
             } else {
                 ToolUtils.showShortToast(mContext, "您还未登录，请先登录");
             }

@@ -34,6 +34,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 视频详情 界面
+ */
 public class VideoListActivity extends AppCompatActivity implements View.OnClickListener {
 
     //标题栏

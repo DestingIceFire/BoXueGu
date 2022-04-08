@@ -14,6 +14,9 @@ import android.widget.VideoView;
 import com.hbtangxun.boxuegu2022.R;
 import com.hbtangxun.boxuegu2022.utils.ToolUtils;
 
+/**
+ * 视频播放 界面
+ */
 public class VideoPlayActivity extends AppCompatActivity {
 
     private VideoView video_view;

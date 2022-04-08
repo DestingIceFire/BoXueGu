@@ -15,6 +15,10 @@ import com.hbtangxun.boxuegu2022.bean.VideoBean;
 
 import java.util.List;
 
+/**
+ *  播放记录 适配器
+ */
+
 public class PlayHistoryAdapter extends BaseAdapter {
 
     private Context mContext;
