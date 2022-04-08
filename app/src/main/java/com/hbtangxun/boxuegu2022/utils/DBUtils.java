@@ -86,9 +86,13 @@ public class DBUtils {
     public void saveVideoPlayList(VideoBean bean, String name) {
         // 判断数据库里是否有存放该数据，有就删，没有直接存
         if (hasVideoPlay(bean.getChapterId(), bean.getVideoId(), name)) {
-            //
+            boolean isDelete = delVideoPlay(bean.getChapterId(), bean.getVideoId(), name);
+            if(!isDelete) {
+                //没有删除成功，则需要跳出这个方法，不再执行下列语句
+                return;
+            }
         }
-
+        // 保存视频播放记录
         ContentValues cv = new ContentValues();
         cv.put("userName", name);
         cv.put("chapterId", bean.getChapterId());
@@ -118,6 +122,24 @@ public class DBUtils {
         }
         cursor.close();
         return hasVideo;
+    }
+
+    /**
+     * 删除已存在的视频
+     *
+     * @param chapterId
+     * @param videoId
+     * @param name
+     * @return
+     */
+    private boolean delVideoPlay(int chapterId, String videoId, String name) {
+        boolean delS = false;
+        int num = db.delete(SQLiteHelper.U_VIDEO_PLAY_LIST, "chapterId=? AND videoId=? And userName=?",
+                new String[]{chapterId + "", videoId + "", name});
+        if (num > 1) {
+            delS = true;
+        }
+        return delS;
     }
 
 }
