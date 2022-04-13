@@ -13,8 +13,13 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            // minifyEnabled 用于设置是否开启混淆 默认false
+            minifyEnabled true
+            // shrinkResources 用于去除无用resources文件
+            shrinkResources true
+            //proguardFiles getDefaultProguardFile 用于加载混淆的配置文件，在配置文件中包含有混淆的相关规则
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
+                    'proguard-rules.pro'
         }
     }
 }
