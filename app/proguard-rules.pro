@@ -14,6 +14,7 @@
 -keep public class * extends android.view.View
 -keep public class * extends android.database.sqlite.SQLiteOpenHelper{*;}
 -keep public class com.android.vending.licensing.ILicensingService
+-keep public class * implements androidx.versionedparcelable.VersionedParcelable
 
 -keepclasseswithmembernames class * {  # 保持native方法不被混淆
     native <methods>;
